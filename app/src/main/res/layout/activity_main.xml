@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f9f9f9"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/primary_button_background"
+        android:onClick="clear"
+
+        android:text="Clear"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/loadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/clearButton"
+        android:layout_marginLeft="3dp"
+
+        android:layout_toRightOf="@id/clearButton"
+        android:background="@drawable/primary_button_background"
+        android:onClick="loadUrl"
+        android:text="Load url"
+
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/clearButton"
+        android:layout_marginBottom="20dp"
+        android:lines="2"
+        android:text="http://10.4.0.91:3000/category/001"
+        android:background="@drawable/text_field_background_dark"
+        android:padding="3dp" />
+
+</RelativeLayout>
