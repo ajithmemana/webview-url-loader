@@ -25,7 +25,7 @@ public class WebViewActivity extends ActionBarActivity {
         setContentView(R.layout.activity_webviewactivity);
         getSupportActionBar().setTitle("Loading...");
         String url = getIntent().getStringExtra("url");
-        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
         final Activity activity = this;
         webview = (WebView) findViewById(R.id.wevbiew);
 
