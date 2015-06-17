@@ -32,7 +32,7 @@
         android:background="@drawable/text_field_background_dark"
         android:lines="2"
         android:padding="3dp"
-        android:text="http://storemap.qburst.com/" />
+        android:text="http://google.com/" />
 
 
     <Button
