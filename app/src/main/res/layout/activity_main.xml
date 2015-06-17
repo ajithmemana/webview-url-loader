@@ -49,4 +49,20 @@
         android:textColor="#000000" />
 
 
+    <Button
+        android:id="@+id/clearCookiesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loadButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="20dp"
+        android:background="#007eff"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:onClick="clearCookies"
+        android:text="Clear cache and Cookies"
+        android:textColor="#000000" />
+
+
 </RelativeLayout>

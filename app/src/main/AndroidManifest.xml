@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Webviewactivity"
+            android:name=".WebViewActivity"
             android:label="@string/title_activity_webviewactivity"></activity>
     </application>
 

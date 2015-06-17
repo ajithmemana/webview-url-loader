@@ -1,11 +1,11 @@
 package com.example.ajith.urlloader;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,7 +24,7 @@ public class MainActivity extends ActionBarActivity {
     public void loadUrl(View v) {
         String url = editText.getText().toString();
 
-        Intent intent = new Intent(this, Webviewactivity.class);
+        Intent intent = new Intent(this, WebViewActivity.class);
         intent.putExtra("url", url);
         startActivity(intent);
 
@@ -34,4 +34,15 @@ public class MainActivity extends ActionBarActivity {
         editText.setText("");
     }
 
+    public void clearCache(View v) {
+//        webview.clearHistory();
+//        webview.clearFormData();
+//        webview.clearCache(true);
+        CookieSyncManager.createInstance(this);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.removeAllCookie();
+
+        Toast.makeText(this, "Cache cleared", Toast.LENGTH_SHORT).show();
+
+    }
 }

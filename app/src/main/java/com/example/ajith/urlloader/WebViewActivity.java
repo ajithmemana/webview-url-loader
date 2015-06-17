@@ -6,20 +6,18 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 
-public class Webviewactivity extends ActionBarActivity {
+public class WebViewActivity extends ActionBarActivity {
     WebView webview;
     double startTime;
     double stopTime;
     double loadingTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +26,7 @@ public class Webviewactivity extends ActionBarActivity {
         String url = getIntent().getStringExtra("url");
         Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
         final Activity activity = this;
-         webview = (WebView) findViewById(R.id.wevbiew);
+        webview = (WebView) findViewById(R.id.wevbiew);
 
 
         WebSettings settings = webview.getSettings();
@@ -47,8 +45,8 @@ public class Webviewactivity extends ActionBarActivity {
 
             public void onPageFinished(WebView view, String url) {
                 stopTime = System.currentTimeMillis();
-                loadingTime = stopTime-startTime;
-                setPageTitle(loadingTime/1000);
+                loadingTime = stopTime - startTime;
+                setPageTitle(loadingTime / 1000);
                 if (progressBar.isShowing()) {
                     progressBar.dismiss();
                 }
@@ -71,30 +69,9 @@ public class Webviewactivity extends ActionBarActivity {
     }
 
 
-    public void clearCache() {
-        webview.clearHistory();
-        webview.clearFormData();
-        webview.clearCache(true);
-        Toast.makeText(this, "Cache cleared", Toast.LENGTH_SHORT).show();
 
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_webviewactivity, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.clear_cache){
-            clearCache();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void setPageTitle(double time){
-        getSupportActionBar().setTitle("Duration: "+ time+ "s");
+    private void setPageTitle(double time) {
+        getSupportActionBar().setTitle("Duration: " + time + "s");
     }
 }
