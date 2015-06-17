@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.webkit.WebSettings;
@@ -35,7 +36,7 @@ public class WebViewActivity extends ActionBarActivity {
 
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
-        final ProgressDialog progressBar = ProgressDialog.show(this, "WebView Example", "Loading...");
+        final ProgressDialog progressBar = ProgressDialog.show(this, "Please wait", "Loading...");
 
         webview.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -43,9 +44,18 @@ public class WebViewActivity extends ActionBarActivity {
                 return true;
             }
 
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                startTime = System.currentTimeMillis();
+
+                super.onPageStarted(view, url, favicon);
+            }
+
             public void onPageFinished(WebView view, String url) {
                 stopTime = System.currentTimeMillis();
                 loadingTime = stopTime - startTime;
+                stopTime = 0;
+                startTime = 0;
                 setPageTitle(loadingTime / 1000);
                 if (progressBar.isShowing()) {
                     progressBar.dismiss();
@@ -64,11 +74,8 @@ public class WebViewActivity extends ActionBarActivity {
                 alertDialog.show();
             }
         });
-        startTime = System.currentTimeMillis();
         webview.loadUrl(url);
     }
-
-
 
 
     private void setPageTitle(double time) {
