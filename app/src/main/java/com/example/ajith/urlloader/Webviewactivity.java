@@ -4,25 +4,27 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
 public class Webviewactivity extends ActionBarActivity {
     WebView webview;
+    double startTime;
+    double stopTime;
+    double loadingTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webviewactivity);
+        getSupportActionBar().setTitle("Loading...");
         String url = getIntent().getStringExtra("url");
         Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
         final Activity activity = this;
@@ -44,6 +46,9 @@ public class Webviewactivity extends ActionBarActivity {
             }
 
             public void onPageFinished(WebView view, String url) {
+                stopTime = System.currentTimeMillis();
+                loadingTime = stopTime-startTime;
+                setPageTitle(loadingTime/1000);
                 if (progressBar.isShowing()) {
                     progressBar.dismiss();
                 }
@@ -61,7 +66,8 @@ public class Webviewactivity extends ActionBarActivity {
                 alertDialog.show();
             }
         });
-        webview.loadUrl("http://www.google.com");
+        startTime = System.currentTimeMillis();
+        webview.loadUrl(url);
     }
 
 
@@ -86,5 +92,9 @@ public class Webviewactivity extends ActionBarActivity {
             clearCache();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setPageTitle(double time){
+        getSupportActionBar().setTitle("Duration: "+ time+ "s");
     }
 }
